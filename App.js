@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import React, { useState } from 'react';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import AddTransaction from './screens/AddTransaction';
+import Home from "./screens/Home"
+import { initializeDatabase } from './utils/db';
+const App = () => {
+  const [modal, setModal] = useState(false);
+  initializeDatabase()
+    .then(() => console.log("Database initilized"))
+    .catch((error) => console.log("error on database initializing "))
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Home modal={modal} setModal={setModal} />
+      <AddTransaction modal={modal} setModal={setModal} />
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+const styles = StyleSheet.create({});
