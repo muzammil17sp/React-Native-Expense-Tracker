@@ -4,7 +4,7 @@ import { checkValidation } from '../utils/Validation';
 import Toast from "react-native-toast-message"
 import { addTransaction } from '../utils/db';
 import Modal from "react-native-modal"
-const AddTransaction = ({ modal, setModal }) => {
+const AddTransaction = ({ modal, setModal,setloadAgain }) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [error, setError] = useState({});
@@ -24,6 +24,7 @@ const AddTransaction = ({ modal, setModal }) => {
           setTitle('')
           setAmount("")
           setModal(false)
+          setloadAgain(true)
         }, 1000);
       }
     }

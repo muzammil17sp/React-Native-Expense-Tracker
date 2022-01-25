@@ -5,13 +5,15 @@ import Home from "./screens/Home"
 import { initializeDatabase } from './utils/db';
 const App = () => {
   const [modal, setModal] = useState(false);
+  const [loadAgain, setloadAgain] = useState(false);
+
   initializeDatabase()
     .then(() => console.log("Database initilized"))
     .catch((error) => console.log("error on database initializing "))
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Home modal={modal} setModal={setModal} />
-      <AddTransaction modal={modal} setModal={setModal} />
+      <Home loadAgain={loadAgain} setloadAgain={setloadAgain} setModal={setModal} />
+      <AddTransaction modal={modal} setModal={setModal} setloadAgain={setloadAgain} />
     </SafeAreaView>
   );
 };
